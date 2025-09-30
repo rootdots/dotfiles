@@ -1,0 +1,28 @@
+[window]
+decorations = "None"
+padding = { x = 3, y = 3 }
+dynamic_padding = true
+opacity = 0.9
+blur = true
+startup_mode = "Maximized" # or "Fullscreen"
+
+[font]
+normal = { family = "JetBrainsMonoNL Nerd Font", style = "Regular" }
+# normal = { family = "RecMonoDuotone Nerd Font Mono", style = "Regular" }
+# normal = { family = "Lilex", style = "Regular" }
+# normal = { family = "Google Sans Code", style = "Regular" }
+
+# size = 13
+# size = 13.25
+# size = 13.5
+# size = 13.75
+size = 14
+
+# offset = { x = 0, y = 4 }
+offset = { x = 0, y = 1 }
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style = { shape = "Block", blinking = "On" }

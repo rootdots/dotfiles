@@ -1,0 +1,55 @@
+theme = "jetbrains_dark_mod"
+
+[editor]
+bufferline = "multiple"
+color-modes = true
+end-of-line-diagnostics = "disable"
+inline-diagnostics.cursor-line = "hint"
+popup-border = "all"
+rulers = [88]
+text-width = 88
+true-color = true
+
+[editor.soft-wrap]
+enable = true
+wrap-at-text-width = true
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.indent-guides]
+render = true
+character = "▏" # "╎" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
+  
+[editor.statusline]
+center = ["version-control"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[keys.normal]
+A-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+A-j = ["extend_to_line_bounds", "delete_selection", "move_line_down", "paste_before"]
+A-r = ":toggle line-number relative absolute"
+"minus" = ":toggle whitespace.render all none"
+"§" = [":set soft-wrap.enable false", ":echo 'soft-wrap set to false'"]
+"½" = [":set soft-wrap.enable true", ":echo 'soft-wrap set to true'"]
+X = "extend_line_above"
+S-down = "copy_selection_on_next_line"
+S-up = "copy_selection_on_prev_line"
+"+" = ":echo %sh{git show --no-patch --pretty=format:'%%h | %%an | %%cd | %%s' --date=short $(git blame -L %{cursor_line},+1 %{buffer_name} | awk '{print $1}')}"
+
+[keys.normal.space]
+i = ":toggle lsp.display-inlay-hints"
+l = ":toggle inline-diagnostics.cursor-line hint disable"
+
+[keys.select]
+A-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+A-j = ["extend_to_line_bounds", "delete_selection", "move_line_down", "paste_before"]
+A-r = ":toggle line-number relative absolute"
+X = "extend_line_above"
+
+[keys.insert]
+S-down = "copy_selection_on_next_line"
+S-up = "copy_selection_on_prev_line"
