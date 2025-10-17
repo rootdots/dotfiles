@@ -1,5 +1,14 @@
 ## [] - 2025-10-17
 
+### 🐛 Bug Fixes
+
+- Gitignore
+
+### 📚 Documentation
+
+- Update changelog for v
+## [] - 2025-10-17
+
 ### 🚀 Features
 
 - Add more theming in tmux conf
