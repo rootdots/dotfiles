@@ -1,3 +1,8 @@
+[general]
+import = [
+"~/.config/alacritty/themes/themes/tomorrow_night.toml",
+]
+
 [window]
 decorations = "None"
 padding = { x = 3, y = 3 }
