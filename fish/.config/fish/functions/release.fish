@@ -28,11 +28,16 @@ function release
         return 1
     end
 
+    if test -z "$new_version"
+        echo "❌ Failed to determine new version."
+        return 1
+    end
+
     echo "🔢 New version: $new_version"
 
     # Step 2: Update version in pyproject.toml or fallback to VERSION file
     if test -f pyproject.toml
-        sed -i '' "s/^version = \".*\"/version = \"$new_version\"/" pyproject.toml
+        sed -i "s/^version = \".*\"/version = \"$new_version\"/" pyproject.toml
         git add pyproject.toml
     else
         echo "$new_version" >VERSION
