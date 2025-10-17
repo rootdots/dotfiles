@@ -2,7 +2,10 @@ inherits = "jetbrains_dark"
 
 # fixes for the cursor and punctuation matches
 "ui.cursor" = { bg = "blue34", modifiers = ["reversed"] }
+# "ui.cursor.match" = { bg = "blue34", modifiers = ["reversed"] }
+# "ui.cursor.match" = { bg = "blue133", modifiers = ["reversed"] }
 "ui.cursor.match" = { fg = "blue34", bg = "blue247" }
+# "ui.cursor.match" = { fg = "blue34", bg = "blue133" }
 
 # minor missing features to make the theme feel more complete
 "variable" = "blue196"
