@@ -1,5 +1,14 @@
 ## [] - 2025-10-17
 
+### 📚 Documentation
+
+- Update changelog for v
+
+### ⚙️ Miscellaneous Tasks
+
+- Release v
+## [] - 2025-10-17
+
 ### 🚀 Features
 
 - Add more theming in tmux conf
