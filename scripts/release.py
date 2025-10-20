@@ -136,7 +136,10 @@ def release(
     dry_run: Annotated[bool, typer.Option(help="Simulate the release process")] = False,
     verbose: Annotated[bool, typer.Option(help="Enable verbose output")] = False,
     preview_changelog: Annotated[
-        bool, typer.Option(help="Preview changelog before committing")
+        bool, typer.Option(help="Preview full changelog before committing")
+    ] = False,
+    publish_github: Annotated[
+        bool, typer.Option(help="Publish release to GitHub")
     ] = False,
 ) -> None:
     if verbose:
@@ -173,13 +176,10 @@ def release(
 
     if preview_changelog:
         preview = run(
-            ["git-cliff", "--unreleased"],
-            capture_output=True,
-            dry_run=dry_run,
-            verbose=verbose,
+            ["git-cliff"], capture_output=True, dry_run=dry_run, verbose=verbose
         )
         if preview:
-            typer.echo("\n📜 Changelog Preview:\n")
+            typer.echo("\n📜 Full Changelog Preview:\n")
             typer.echo(preview)
             typer.echo("\n📜 End of Preview\n")
 
@@ -196,7 +196,7 @@ def release(
     )
 
     _ = run(
-        ["git-cliff", "--unreleased", "-o", "CHANGELOG.md"],
+        ["git-cliff", "-t", tag_version, "-o", "CHANGELOG.md"],
         dry_run=dry_run,
         verbose=verbose,
     )
@@ -210,6 +210,14 @@ def release(
     _ = run(["git", "tag", tag_version], dry_run=dry_run, verbose=verbose)
     _ = run(["git", "push"], dry_run=dry_run, verbose=verbose)
     _ = run(["git", "push", "origin", tag_version], dry_run=dry_run, verbose=verbose)
+
+    if publish_github:
+        _ = run(
+            ["gh", "release", "create", tag_version, "--notes-file", "CHANGELOG.md"],
+            dry_run=dry_run,
+            verbose=verbose,
+        )
+        typer.echo(f"🚀 Published release {tag_version} to GitHub")
 
     typer.echo(f"✅ Release {tag_version} complete{' (simulated)' if dry_run else ''}!")
 
