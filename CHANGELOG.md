@@ -1,3 +1,13 @@
+## [0.1.2] - 2025-10-20
+
+### 📚 Documentation
+
+- Update changelog for v0.1.1
+- Update readme with info about release-script
+
+### ⚙️ Miscellaneous Tasks
+
+- Release v0.1.2
 ## [0.1.1] - 2025-10-20
 
 ### 🐛 Bug Fixes
