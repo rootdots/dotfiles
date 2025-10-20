@@ -135,6 +135,9 @@ def release(
     ] = None,
     dry_run: Annotated[bool, typer.Option(help="Simulate the release process")] = False,
     verbose: Annotated[bool, typer.Option(help="Enable verbose output")] = False,
+    preview_changelog: Annotated[
+        bool, typer.Option(help="Preview changelog before committing")
+    ] = False,
 ) -> None:
     if verbose:
         typer.echo("📣 Verbose mode enabled")
@@ -144,11 +147,41 @@ def release(
         )
 
     current = get_current_version(dry_run=dry_run, verbose=verbose)
-    new_version = bump_version(current, bump, verbose=verbose)
+
+    if bump is None:
+        new_version = (
+            run(
+                ["git-cliff", "--bumped-version"],
+                capture_output=True,
+                dry_run=dry_run,
+                verbose=verbose,
+            )
+            or current
+        )
+        new_version = normalize_version(new_version)
+        if verbose:
+            typer.echo(
+                f"[verbose] Auto-detected version bump from git-cliff: {new_version}"
+            )
+    else:
+        new_version = bump_version(current, bump, verbose=verbose)
+
     tag_version = f"v{new_version}"
 
     typer.echo(f"🔢 Current version: {current}")
     typer.echo(f"🚀 New version: {new_version}")
+
+    if preview_changelog:
+        preview = run(
+            ["git-cliff", "--unreleased"],
+            capture_output=True,
+            dry_run=dry_run,
+            verbose=verbose,
+        )
+        if preview:
+            typer.echo("\n📜 Changelog Preview:\n")
+            typer.echo(preview)
+            typer.echo("\n📜 End of Preview\n")
 
     if not dry_run and not typer.confirm(f"Proceed with release {tag_version}?"):
         typer.echo("❌ Release aborted.")
@@ -161,11 +194,13 @@ def release(
         dry_run=dry_run,
         verbose=verbose,
     )
+
     _ = run(
-        ["git-cliff", "-t", tag_version, "-o", "CHANGELOG.md"],
+        ["git-cliff", "--unreleased", "-o", "CHANGELOG.md"],
         dry_run=dry_run,
         verbose=verbose,
     )
+
     _ = run(["git", "add", "CHANGELOG.md"], dry_run=dry_run, verbose=verbose)
     _ = run(
         ["git", "commit", "-m", f"docs: update changelog for {tag_version}"],
