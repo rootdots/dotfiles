@@ -1,4 +1,5 @@
-theme = "jetbrains_dark_mod"
+# theme = "jetbrains_dark_mod"
+theme = "jetbrains_islands_dark"
 
 [editor]
 bufferline = "multiple"
@@ -39,6 +40,8 @@ X = "extend_line_above"
 S-down = "copy_selection_on_next_line"
 S-up = "copy_selection_on_prev_line"
 "+" = ":echo %sh{git show --no-patch --pretty=format:'%%h | %%an | %%cd | %%s' --date=short $(git blame -L %{cursor_line},+1 %{buffer_name} | awk '{print $1}')}"
+tab = ":buffer-next"
+S-tab = ":buffer-previous"
 
 [keys.normal.space]
 i = ":toggle lsp.display-inlay-hints"

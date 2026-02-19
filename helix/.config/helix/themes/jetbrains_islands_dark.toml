@@ -1,0 +1,234 @@
+# Many Islands Dark (JetBrains Islands Dark / IslandSchemeDark.xml) -> Helix
+# ~/.config/helix/themes/jetbrains_islands_dark.toml
+
+inherits = "jetbrains_dark"
+
+########################################
+# UI
+########################################
+
+"ui.background" = { bg = "bg0" }
+"ui.window"     = { bg = "bg0" }
+
+"ui.text"             = { fg = "fg0" }
+"ui.text.focus"       = { fg = "fg0" }
+"ui.text.inactive"    = { fg = "fg2" }
+"ui.text.muted"       = { fg = "fg2" }
+"ui.text.disabled"    = { fg = "fg3" }
+
+"ui.cursor"           = { fg = "bg0", modifiers = ["reversed"] }
+"ui.cursor.primary"   = { fg = "bg0", bg = "fg0" }
+"ui.cursor.match"     = { fg = "fg2", modifiers = ["reversed"] }
+
+"ui.cursorline"         = { bg = "bg1" }
+"ui.cursorline.primary" = { bg = "bg1" }
+
+"ui.selection"         = { bg = "sel" }
+"ui.selection.primary" = { bg = "sel" }
+
+"ui.linenr"          = { fg = "fg2" }
+"ui.linenr.selected" = { fg = "fg0" }
+"ui.gutter"          = { bg = "bg0" }
+
+"ui.statusline"          = { fg = "fg0", bg = "bg1" }
+"ui.statusline.inactive" = { fg = "fg2", bg = "bg1" }
+"ui.statusline.normal"   = { fg = "fg0", bg = "bg1" }
+"ui.statusline.insert"   = { fg = "bg0", bg = "blue" }
+"ui.statusline.select"   = { fg = "bg0", bg = "magenta" }
+
+"ui.bufferline"             = { fg = "fg2", bg = "bg1" }
+"ui.bufferline.active"      = { fg = "fg2", modifiers = ["reversed"] }
+"ui.bufferline.background"  = { bg = "bg1" }
+
+"ui.popup"          = { fg = "fg0", bg = "bg0" }
+"ui.popup.info"     = { fg = "fg0", bg = "bg0" }
+"ui.menu"           = { fg = "fg0", bg = "bg3" }
+"ui.menu.selected"  = { fg = "function", modifiers = ["reversed"] }
+"ui.menu.scroll"    = { fg = "fg2", bg = "bg0" }
+"ui.help"           = { fg = "fg0", bg = "bg0" }
+
+"ui.virtual.whitespace"   = { fg = "fg3" }
+"ui.virtual.indent-guide" = { fg = "indent_guide" }
+"ui.virtual.ruler"        = { bg = "ruler" }
+"ui.virtual.inlay-hint"   = { fg = "fg2" }
+"ui.virtual.jump-label"   = { fg = "bg0", bg = "blue", modifiers = ["bold"] }
+
+"ui.highlight" = { bg = "bg1" }
+
+########################################
+# Diagnostics (underline like IDE)
+########################################
+
+"error"   = { fg = "error" }
+"warning" = { fg = "warning" }
+"info"    = { fg = "blue" }
+"hint"    = { fg = "blue" }
+
+"diagnostic"         = { underline = { style = "line", color = "fg2" } }
+"diagnostic.error"   = { underline = { style = "curl", color = "error" } }
+"diagnostic.warning" = { underline = { style = "curl", color = "warning" } }
+"diagnostic.info"    = { underline = { style = "line", color = "blue" } }
+"diagnostic.hint"    = { underline = { style = "line", color = "blue" } }
+
+########################################
+# Diff / VCS
+########################################
+
+"diff.plus"  = { fg = "diff_add" }
+"diff.delta" = { fg = "diff_mod" }
+"diff.minus" = { fg = "diff_del" }
+
+########################################
+# Syntax (Islands Dark – nära 1:1)
+########################################
+
+# Comments
+"comment"       = { fg = "comment", modifiers = ["italic"] }
+"comment.line"  = { fg = "comment", modifiers = ["italic"] }
+"comment.block" = { fg = "comment", modifiers = ["italic"] }
+"comment.doc"   = { fg = "doc_comment", modifiers = ["italic"] }
+
+# Keywords / directives
+"keyword"            = { fg = "keyword" }
+"keyword.control"    = { fg = "keyword" }
+"keyword.directive"  = { fg = "keyword" }
+"keyword.storage"    = { fg = "keyword" }
+
+# Strings
+"string"         = { fg = "string" }
+"string.regexp"  = { fg = "string" }
+"string.escape"  = { fg = "keyword" }
+"string.special" = { fg = "string" }
+
+# Numbers / constants
+"constant"          = { fg = "magenta" }
+"constant.numeric"  = { fg = "number" }
+"constant.boolean"  = { fg = "keyword" }
+"constant.builtin"  = { fg = "magenta" }
+"constant.character"= { fg = "string" }
+
+# Functions / methods
+"function"         = { fg = "function" }
+"function.builtin" = { fg = "function" }
+"function.macro"   = { fg = "function" }
+"constructor"      = { fg = "function" }
+
+# Types (ingen separat DEFAULT_TYPE i schemat -> välj metadata-tonen)
+"type"         = { fg = "meta" }
+"type.builtin" = { fg = "meta" }
+"type.parameter" = { fg = "meta" }
+
+# Identifiers
+"variable"           = { fg = "fg0" }
+"variable.parameter" = { fg = "fg0" }
+"variable.builtin"   = { fg = "fg1" }
+"property"           = { fg = "magenta" } # ligger nära JB "fields/constants" i Islands
+"field"              = { fg = "magenta" }
+"attribute"          = { fg = "meta" }
+
+# Operators / punctuation
+"operator"              = { fg = "fg0" }
+"punctuation"           = { fg = "fg0" }
+"punctuation.delimiter" = { fg = "fg0" }
+"punctuation.bracket"   = { fg = "fg0" }
+"punctuation.special"   = { fg = "fg0" }
+
+# Markup
+"markup.heading"   = { fg = "fg0", modifiers = ["bold"] }
+"markup.bold"      = { modifiers = ["bold"] }
+"markup.italic"    = { modifiers = ["italic"] }
+"markup.link.url"  = { fg = "function", modifiers = ["underlined"] }
+"markup.link.text" = { fg = "function" }
+"markup.quote"     = { fg = "fg1" }
+"markup.list"      = { fg = "fg1" }
+"markup.raw"       = { fg = "fg0", bg = "bg1" }
+
+########################################
+# Language refinements: Python + Rust
+########################################
+
+# --- Common refinements ---
+"namespace" = { fg = "fg1" }
+"module"    = { fg = "fg1" }
+
+"type.enum.variant" = { fg = "magenta" }     # enum variants poppar som JB
+"type.struct"       = { fg = "meta" }
+"type.enum"         = { fg = "meta" }
+"type.trait"        = { fg = "meta" }
+
+"variable.member"   = { fg = "magenta" }     # fields / properties (JB: lila)
+# "property"          = { fg = "magenta" }
+# "field"             = { fg = "magenta" }
+
+"function.method"   = { fg = "function" }
+# "function.macro"    = { fg = "function" }
+# "attribute"         = { fg = "meta" }        # Rust #[...] / Python decorators
+
+"label"             = { fg = "meta" }
+
+# --- Python-ish ---
+# "variable.builtin"  = { fg = "meta" }        # True/False/None, builtins lite “meta”
+# "constant.builtin"  = { fg = "meta" }
+"keyword.import"    = { fg = "keyword" }
+"keyword.return"    = { fg = "keyword" }
+"keyword.exception" = { fg = "keyword" }
+
+# decorators: @dataclass etc.
+"function.decorator" = { fg = "function" }
+"tag.decorator"      = { fg = "function" }
+
+# f-strings / formatting (best-effort)
+# "string.special"       = { fg = "string" }
+# "string.escape"        = { fg = "keyword" }
+"constant.character.escape" = { fg = "keyword" }
+
+# --- Rust-ish ---
+"special"            = { fg = "keyword" }    # lifetimes / special tokens (best-effort)
+# "punctuation.special"= { fg = "keyword" }    # ::, 'a, etc. får en JB-lik accent
+# "keyword.storage"    = { fg = "keyword" }    # let, mut, ref
+# "keyword.control"    = { fg = "keyword" }    # match, if, while, for
+
+# crates / paths känns ofta “namespace”
+"namespace.crate"    = { fg = "fg1" }
+"namespace.type"     = { fg = "meta" }
+
+########################################
+# Palette (Islands Dark)
+########################################
+[palette]
+# Base
+bg0 = "#191A1C"   # editor background
+bg1 = "#1F2024"   # caret row / subtle highlight
+bg3 = "#2B2D30"   # strong UI selection-ish
+ruler = "#323438"
+
+fg0 = "#BCBEC4"   # default text
+fg1 = "#CED0D6"
+fg2 = "#7A7E85"   # comments / muted
+fg3 = "#6B6C73"
+
+# Token colors (from Islands Dark scheme)
+keyword      = "#CF8E6D"
+string       = "#6AAB73"
+number       = "#2AACB8"
+function     = "#56A8F5"
+magenta      = "#C77DBB"
+meta         = "#B3AE60"
+comment      = "#7A7E85"
+doc_comment  = "#5F826B"
+
+# Diagnostics / diff
+error   = "#D64D5B"
+warning = "#C29E4A"
+diff_add = "#549159"
+diff_mod = "#375FAD"
+diff_del = "#868A91"
+
+# UI selection: använd Islands-notification blå som syns bra i Helix
+sel = "#25324D"
+
+# indent guide selected tone
+indent_guide = "#4E5157"
+
+# Accent-ish
+blue = "#56A8F5"
