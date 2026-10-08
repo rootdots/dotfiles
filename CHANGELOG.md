@@ -1,3 +1,8 @@
+## [0.4.2] - 2026-10-08
+
+### 🐛 Bug Fixes
+
+- *(fish)* Add abbr ll
 ## [0.4.1] - 2026-10-08
 
 ### 🐛 Bug Fixes
@@ -5,6 +10,10 @@
 - *(fish)* Remove unused functions
 - *(fish)* Remove unused functions
 - *(fish)* Add abbreviations for git and astral tools
+
+### ⚙️ Miscellaneous Tasks
+
+- *(release)* Prepare v0.4.1
 ## [0.4.0] - 2026-10-08
 
 ### 🚀 Features
