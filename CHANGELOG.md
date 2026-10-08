@@ -1,8 +1,26 @@
+## [0.4.0] - 2026-10-08
+
+### 🚀 Features
+
+- *(helix)* Cleanup language setup for python; Add more useful binds
+
+### 🐛 Bug Fixes
+
+- *(fish)* Add changes related to update to 4.3
+
+### 🚜 Refactor
+
+- *(release)* Make release-script more stable
+
+### 🎨 Styling
+
+- *(helix)* Improve theme jetbrains_islands_dark
 ## [0.3.1] - 2026-10-08
 
 ### ⚙️ Miscellaneous Tasks
 
 - *(release)* Prepare v0.3.0
+- *(release)* Prepare v0.3.1
 ## [0.3.0] - 2026-02-19
 
 ### 🚀 Features
