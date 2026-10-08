@@ -1,11 +1,11 @@
-import subprocess
 import re
+import subprocess
 from pathlib import Path
-import typer
-import tomllib
 from typing import Annotated, TypedDict
+import tomllib
+import typer
 
-app = typer.Typer()
+app = typer.Typer(add_completion=False)
 
 
 class ProjectMetadata(TypedDict, total=False):
@@ -23,25 +23,44 @@ def run(
     verbose: bool = False,
 ) -> str | None:
     cmd_str = " ".join(cmd)
-    if dry_run or verbose:
-        typer.echo(f"{'[dry-run]' if dry_run else '[verbose]'} Running: {cmd_str}")
-    if dry_run:
-        return ""
-    result = subprocess.run(
-        cmd,
-        check=True,
-        text=True,
-        stdout=subprocess.PIPE if capture_output else None,
+
+    # Läs-kommandon (som inte förändrar något i git/filsystem) tillåts köra under dry-run
+    is_read_only = capture_output or (
+        len(cmd) > 1 and cmd[0] == "git-cliff" and "--bumped-version" in cmd
     )
-    return result.stdout.strip() if capture_output else None
+
+    if dry_run or verbose:
+        prefix = "[dry-run]" if dry_run else "[verbose]"
+        typer.echo(f"{prefix} Running: {cmd_str}")
+
+    # Om det är dry-run OCH kommandot förändrar tillstånd, hoppa över exekvering
+    if dry_run and not is_read_only:
+        return None
+
+    try:
+        result = subprocess.run(
+            cmd,
+            check=True,
+            text=True,
+            stdout=subprocess.PIPE if capture_output else None,
+            stderr=subprocess.PIPE if capture_output else None,
+        )
+        return result.stdout.strip() if capture_output and result.stdout else None
+    except subprocess.CalledProcessError as e:
+        stderr_msg = f": {e.stderr.strip()}" if e.stderr else ""
+        typer.echo(f"❌ Command failed execution '{cmd_str}'{stderr_msg}")
+        raise typer.Exit(code=1) from e
+    except FileNotFoundError:
+        typer.echo(f"❌ Command not found: '{cmd[0]}'. Make sure it is installed.")
+        raise typer.Exit(code=1)
 
 
 def normalize_version(version: str) -> str:
-    return version.lstrip("v")
+    return version.lstrip("v").strip()
 
 
 def is_valid_semver(version: str) -> bool:
-    return re.match(r"^v?[0-9]+\.[0-9]+\.[0-9]+$", version) is not None
+    return re.match(r"^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$", version) is not None
 
 
 def get_current_version(dry_run: bool = False, verbose: bool = False) -> str:
@@ -63,6 +82,7 @@ def get_current_version(dry_run: bool = False, verbose: bool = False) -> str:
                 return normalize_version(version)
         except Exception as e:
             typer.echo(f"⚠️ Failed to read pyproject.toml: {e}")
+
     version = (
         run(
             ["git-cliff", "--bumped-version"],
@@ -80,11 +100,20 @@ def get_current_version(dry_run: bool = False, verbose: bool = False) -> str:
 
 
 def bump_version(current: str, bump_type: str | None, verbose: bool = False) -> str:
-    major, minor, patch = map(int, current.split("."))
+    try:
+        base_version = current.split("-")[0]
+        major, minor, patch = map(int, base_version.split("."))
+    except ValueError:
+        typer.echo(
+            f"❌ Cannot parse current version '{current}' into major.minor.patch format."
+        )
+        raise typer.Exit(code=1)
+
     if verbose:
         typer.echo(
             f"[verbose] Current version parts: major={major}, minor={minor}, patch={patch}"
         )
+
     match bump_type:
         case "major":
             major += 1
@@ -100,6 +129,7 @@ def bump_version(current: str, bump_type: str | None, verbose: bool = False) -> 
         case _:
             typer.echo("❌ Invalid bump type. Use: major, minor, patch or leave empty.")
             raise typer.Exit(code=1)
+
     new_version = f"{major}.{minor}.{patch}"
     if verbose:
         typer.echo(f"[verbose] Bumped version: {new_version}")
@@ -114,17 +144,22 @@ def update_pyproject_version(
         typer.echo("⚠️ pyproject.toml not found. Skipping version update.")
         return
 
-    content = pyproject.read_text()
-    updated = re.sub(
-        r'version\s*=\s*"v?[0-9]+\.[0-9]+\.[0-9]+"',
-        f'version = "{new_version}"',
-        content,
-    )
+    content = pyproject.read_text(encoding="utf-8")
+
+    # Regex som söker enbart under [project]-sektionen
+    pattern = r'(?m)(^\[project\][\s\S]*?^version\s*=\s*")[^"]+(")'
+    if not re.search(pattern, content):
+        typer.echo(
+            "⚠️ Could not find a valid 'version' field under [project] in pyproject.toml"
+        )
+        return
+
+    updated = re.sub(pattern, rf"\g<1>{new_version}\g<2>", content, count=1)
+
     if dry_run:
         typer.echo(f"[dry-run] Would update pyproject.toml to version: {new_version}")
     else:
-        _ = pyproject.write_text(updated)
-        _ = run(["git", "add", "pyproject.toml"], dry_run=dry_run, verbose=verbose)
+        pyproject.write_text(updated, encoding="utf-8")
 
 
 @app.command()
@@ -133,13 +168,20 @@ def release(
         str | None,
         typer.Argument(help="Version bump type: major, minor, patch or leave empty"),
     ] = None,
-    dry_run: Annotated[bool, typer.Option(help="Simulate the release process")] = False,
-    verbose: Annotated[bool, typer.Option(help="Enable verbose output")] = False,
+    dry_run: Annotated[
+        bool, typer.Option("--dry-run", help="Simulate the release process")
+    ] = False,
+    verbose: Annotated[
+        bool, typer.Option("--verbose", help="Enable verbose output")
+    ] = False,
     preview_changelog: Annotated[
-        bool, typer.Option(help="Preview full changelog before committing")
+        bool,
+        typer.Option(
+            "--preview-changelog", help="Preview full changelog before committing"
+        ),
     ] = False,
     publish_github: Annotated[
-        bool, typer.Option(help="Publish release to GitHub")
+        bool, typer.Option("--publish-github", help="Publish release to GitHub")
     ] = False,
 ) -> None:
     if verbose:
@@ -152,20 +194,20 @@ def release(
     current = get_current_version(dry_run=dry_run, verbose=verbose)
 
     if bump is None:
-        new_version = (
-            run(
-                ["git-cliff", "--bumped-version"],
-                capture_output=True,
-                dry_run=dry_run,
-                verbose=verbose,
-            )
-            or current
+        detected = run(
+            ["git-cliff", "--bumped-version"],
+            capture_output=True,
+            dry_run=dry_run,
+            verbose=verbose,
         )
-        new_version = normalize_version(new_version)
-        if verbose:
-            typer.echo(
-                f"[verbose] Auto-detected version bump from git-cliff: {new_version}"
-            )
+        if detected:
+            new_version = normalize_version(detected)
+        else:
+            if verbose:
+                typer.echo(
+                    "[verbose] git-cliff found no bump, defaulting to patch bump."
+                )
+            new_version = bump_version(current, "patch", verbose=verbose)
     else:
         new_version = bump_version(current, bump, verbose=verbose)
 
@@ -176,7 +218,10 @@ def release(
 
     if preview_changelog:
         preview = run(
-            ["git-cliff"], capture_output=True, dry_run=dry_run, verbose=verbose
+            ["git-cliff", "--unreleased"],
+            capture_output=True,
+            dry_run=dry_run,
+            verbose=verbose,
         )
         if preview:
             typer.echo("\n📜 Full Changelog Preview:\n")
@@ -187,32 +232,36 @@ def release(
         typer.echo("❌ Release aborted.")
         raise typer.Exit()
 
+    # 1. Uppdatera pyproject.toml
     update_pyproject_version(new_version, dry_run=dry_run, verbose=verbose)
 
-    _ = run(
-        ["git", "commit", "-m", f"chore: release {tag_version}"],
-        dry_run=dry_run,
-        verbose=verbose,
-    )
-
-    _ = run(
+    # 2. Generera changelog för den nya taggen
+    run(
         ["git-cliff", "-t", tag_version, "-o", "CHANGELOG.md"],
         dry_run=dry_run,
         verbose=verbose,
     )
 
-    _ = run(["git", "add", "CHANGELOG.md"], dry_run=dry_run, verbose=verbose)
-    _ = run(
-        ["git", "commit", "-m", f"docs: update changelog for {tag_version}"],
+    # 3. Stega alla ändrade filer (pyproject.toml + CHANGELOG.md) och göra EN samlad commit
+    run(
+        ["git", "add", "pyproject.toml", "CHANGELOG.md"],
         dry_run=dry_run,
         verbose=verbose,
     )
-    _ = run(["git", "tag", tag_version], dry_run=dry_run, verbose=verbose)
-    _ = run(["git", "push"], dry_run=dry_run, verbose=verbose)
-    _ = run(["git", "push", "origin", tag_version], dry_run=dry_run, verbose=verbose)
+    run(
+        ["git", "commit", "-m", f"chore(release): prepare {tag_version}"],
+        dry_run=dry_run,
+        verbose=verbose,
+    )
 
+    # 4. Taggning och Push
+    run(["git", "tag", tag_version], dry_run=dry_run, verbose=verbose)
+    run(["git", "push"], dry_run=dry_run, verbose=verbose)
+    run(["git", "push", "origin", tag_version], dry_run=dry_run, verbose=verbose)
+
+    # 5. Publicera på GitHub
     if publish_github:
-        _ = run(
+        run(
             ["gh", "release", "create", tag_version, "--notes-file", "CHANGELOG.md"],
             dry_run=dry_run,
             verbose=verbose,
