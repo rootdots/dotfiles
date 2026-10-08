@@ -1,3 +1,10 @@
+## [0.4.1] - 2026-10-08
+
+### 🐛 Bug Fixes
+
+- *(fish)* Remove unused functions
+- *(fish)* Remove unused functions
+- *(fish)* Add abbreviations for git and astral tools
 ## [0.4.0] - 2026-10-08
 
 ### 🚀 Features
@@ -15,6 +22,10 @@
 ### 🎨 Styling
 
 - *(helix)* Improve theme jetbrains_islands_dark
+
+### ⚙️ Miscellaneous Tasks
+
+- *(release)* Prepare v0.4.0
 ## [0.3.1] - 2026-10-08
 
 ### ⚙️ Miscellaneous Tasks
