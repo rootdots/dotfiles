@@ -1,3 +1,6 @@
+# general
+abbr --add ll 'ls -lha'
+
 # git
 abbr --add ga 'git add'
 abbr --add gcp --set-cursor 'git commit -m "%" && git push'
