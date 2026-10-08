@@ -17,14 +17,20 @@ inherits = "jetbrains_dark"
 "ui.text.disabled"    = { fg = "fg3" }
 
 "ui.cursor"           = { fg = "bg0", modifiers = ["reversed"] }
-"ui.cursor.primary"   = { fg = "bg0", bg = "fg0" }
+"ui.cursor.normal"    = { fg = "bg0", bg = "fg2" }
+"ui.cursor.insert"    = { fg = "bg0", bg = "fg2" }
+"ui.cursor.select"    = { fg = "bg0", bg = "fg2" }
+"ui.cursor.primary"   = { fg = "bg0", bg = "fg2" }
+"ui.cursor.primary.normal"   = { fg = "bg0", bg = "fg0" }
+"ui.cursor.primary.insert"   = { fg = "bg0", bg = "blue" }
+"ui.cursor.primary.select"   = { fg = "bg0", bg = "magenta" }
 "ui.cursor.match"     = { fg = "fg2", modifiers = ["reversed"] }
 
 "ui.cursorline"         = { bg = "bg1" }
 "ui.cursorline.primary" = { bg = "bg1" }
 
-"ui.selection"         = { bg = "sel" }
-"ui.selection.primary" = { bg = "sel" }
+# "ui.selection"         = { bg = "sel" }
+# "ui.selection.primary" = { bg = "sel" }
 
 "ui.linenr"          = { fg = "fg2" }
 "ui.linenr.selected" = { fg = "fg0" }
@@ -37,13 +43,13 @@ inherits = "jetbrains_dark"
 "ui.statusline.select"   = { fg = "bg0", bg = "magenta" }
 
 "ui.bufferline"             = { fg = "fg2", bg = "bg1" }
-"ui.bufferline.active"      = { fg = "fg2", modifiers = ["reversed"] }
+"ui.bufferline.active"      = { fg = "blue", modifiers = ["reversed"] }
 "ui.bufferline.background"  = { bg = "bg1" }
 
 "ui.popup"          = { fg = "fg0", bg = "bg0" }
 "ui.popup.info"     = { fg = "fg0", bg = "bg0" }
 "ui.menu"           = { fg = "fg0", bg = "bg3" }
-"ui.menu.selected"  = { fg = "function", modifiers = ["reversed"] }
+"ui.menu.selected"  = { fg = "blue", modifiers = ["reversed"] }
 "ui.menu.scroll"    = { fg = "fg2", bg = "bg0" }
 "ui.help"           = { fg = "fg0", bg = "bg0" }
 
@@ -53,7 +59,7 @@ inherits = "jetbrains_dark"
 "ui.virtual.inlay-hint"   = { fg = "fg2" }
 "ui.virtual.jump-label"   = { fg = "bg0", bg = "blue", modifiers = ["bold"] }
 
-"ui.highlight" = { bg = "bg1" }
+# "ui.highlight" = { bg = "bg1" }
 
 ########################################
 # Diagnostics (underline like IDE)
@@ -85,7 +91,9 @@ inherits = "jetbrains_dark"
 # Comments
 "comment"       = { fg = "comment", modifiers = ["italic"] }
 "comment.line"  = { fg = "comment", modifiers = ["italic"] }
+"comment.line.documentation"  = { fg = "doc_comment", modifiers = ["italic"] }
 "comment.block" = { fg = "comment", modifiers = ["italic"] }
+"comment.block.documentation"  = { fg = "doc_comment", modifiers = ["italic"] }
 "comment.doc"   = { fg = "doc_comment", modifiers = ["italic"] }
 
 # Keywords / directives
@@ -101,29 +109,29 @@ inherits = "jetbrains_dark"
 "string.special" = { fg = "string" }
 
 # Numbers / constants
-"constant"          = { fg = "magenta" }
+"constant"          = { fg = "meta", modifiers = ["bold"] }
 "constant.numeric"  = { fg = "number" }
 "constant.boolean"  = { fg = "keyword" }
-"constant.builtin"  = { fg = "magenta" }
+"constant.builtin"  = { fg = "keyword" }
 "constant.character"= { fg = "string" }
 
 # Functions / methods
 "function"         = { fg = "function" }
-"function.builtin" = { fg = "function" }
-"function.macro"   = { fg = "function" }
+"function.builtin" = { fg = "type" }
+"function.macro"   = { fg = "type" }
 "constructor"      = { fg = "function" }
 
 # Types (ingen separat DEFAULT_TYPE i schemat -> välj metadata-tonen)
-"type"         = { fg = "meta" }
-"type.builtin" = { fg = "meta" }
-"type.parameter" = { fg = "meta" }
+"type"         = { fg = "fg0" }
+"type.builtin" = { fg = "type" }
+"type.parameter" = { fg = "type" }
 
 # Identifiers
 "variable"           = { fg = "fg0" }
 "variable.parameter" = { fg = "fg0" }
 "variable.builtin"   = { fg = "fg1" }
-"property"           = { fg = "magenta" } # ligger nära JB "fields/constants" i Islands
-"field"              = { fg = "magenta" }
+"property"           = { fg = "meta" } # ligger nära JB "fields/constants" i Islands
+"field"              = { fg = "meta" }
 "attribute"          = { fg = "meta" }
 
 # Operators / punctuation
@@ -174,8 +182,8 @@ inherits = "jetbrains_dark"
 "keyword.exception" = { fg = "keyword" }
 
 # decorators: @dataclass etc.
-"function.decorator" = { fg = "function" }
-"tag.decorator"      = { fg = "function" }
+"function.decorator" = { fg = "meta" }
+"tag.decorator"      = { fg = "meta" }
 
 # f-strings / formatting (best-effort)
 # "string.special"       = { fg = "string" }
