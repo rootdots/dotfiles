@@ -1,5 +1,16 @@
+# Defining Ruff LSP
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+
+# Defining Astral's 'ty' LSP
+[language-server.ty]
+command = "ty"
+args = ["server"]
+
+# Connecting both LSP servers to Python
 [[language]]
 name = "python"
-# language-servers = ["ruff", "pylsp"]
-language-servers = ["ruff", "basedpyright"]
+language-servers = ["ruff", "ty"]
 auto-format = true
+formatter = { command = "ruff", args = ["format", "-"] }
