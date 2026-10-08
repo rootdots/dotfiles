@@ -1,3 +1,8 @@
+## [0.3.1] - 2026-10-08
+
+### ⚙️ Miscellaneous Tasks
+
+- *(release)* Prepare v0.3.0
 ## [0.3.0] - 2026-02-19
 
 ### 🚀 Features
