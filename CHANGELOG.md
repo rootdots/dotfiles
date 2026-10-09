@@ -1,8 +1,17 @@
+## [0.4.4] - 2026-10-09
+
+### 🐛 Bug Fixes
+
+- *(fish)* Add abbr gr grs
 ## [0.4.3] - 2026-10-09
 
 ### 🐛 Bug Fixes
 
 - *(fish)* Add abbr as
+
+### ⚙️ Miscellaneous Tasks
+
+- *(release)* Prepare v0.4.3
 ## [0.4.2] - 2026-10-08
 
 ### 🐛 Bug Fixes
