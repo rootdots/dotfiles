@@ -46,6 +46,7 @@ split_commits = false
 # Assigns commits to groups.
 # Optionally sets the commit's scope and can decide to exclude commits from further processing.
 commit_parsers = [
+    { message = "^[a-z]+\\s*:", skip = true },
     { message = "^feat", group = "Features" },
     { message = "^fix", group = "Bug Fixes" },
     { message = "^doc", group = "Documentation", default_scope = "unscoped" },
@@ -53,7 +54,7 @@ commit_parsers = [
     { message = "^refactor", group = "Refactor" },
     { message = "^style", group = "Styling" },
     { message = "^test", group = "Testing" },
-    { message = "^chore\\(release\\): prepare for", skip = true },
+    { message = "^chore\\(release\\):", skip = true },
     { message = "^chore", group = "Miscellaneous Tasks" },
     { body = ".*security", group = "Security" },
 ]
