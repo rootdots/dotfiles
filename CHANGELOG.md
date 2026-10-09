@@ -1,178 +1,225 @@
-## [0.4.4] - 2026-10-09
+# Changelog
 
-### 🐛 Bug Fixes
+All notable changes to this project will be documented in this file.
 
-- *(fish)* Add abbr gr grs
-## [0.4.3] - 2026-10-09
+## 0.4.5 - 2026-10-09
 
-### 🐛 Bug Fixes
+### Styling
 
-- *(fish)* Add abbr as
+#### Git-cliff
 
-### ⚙️ Miscellaneous Tasks
+- Change template for changelog
 
-- *(release)* Prepare v0.4.3
-## [0.4.2] - 2026-10-08
+## 0.4.4 - 2026-10-09
 
-### 🐛 Bug Fixes
+### Bug Fixes
 
-- *(fish)* Add abbr ll
+#### Fish
 
-### ⚙️ Miscellaneous Tasks
+- Add abbr gr grs
 
-- *(release)* Prepare v0.4.2
-## [0.4.1] - 2026-10-08
+### Miscellaneous Tasks
 
-### 🐛 Bug Fixes
+#### Release
 
-- *(fish)* Remove unused functions
-- *(fish)* Remove unused functions
-- *(fish)* Add abbreviations for git and astral tools
+- Prepare v0.4.4
 
-### ⚙️ Miscellaneous Tasks
+## 0.4.3 - 2026-10-09
 
-- *(release)* Prepare v0.4.1
-## [0.4.0] - 2026-10-08
+### Bug Fixes
 
-### 🚀 Features
+#### Fish
 
-- *(helix)* Cleanup language setup for python; Add more useful binds
+- Add abbr as
 
-### 🐛 Bug Fixes
+### Miscellaneous Tasks
 
-- *(fish)* Add changes related to update to 4.3
+#### Release
 
-### 🚜 Refactor
+- Prepare v0.4.3
 
-- *(release)* Make release-script more stable
+## 0.4.2 - 2026-10-08
 
-### 🎨 Styling
+### Bug Fixes
 
-- *(helix)* Improve theme jetbrains_islands_dark
+#### Fish
 
-### ⚙️ Miscellaneous Tasks
+- Add abbr ll
 
-- *(release)* Prepare v0.4.0
-## [0.3.1] - 2026-10-08
+### Miscellaneous Tasks
 
-### ⚙️ Miscellaneous Tasks
+#### Release
 
-- *(release)* Prepare v0.3.0
-- *(release)* Prepare v0.3.1
-## [0.3.0] - 2026-02-19
+- Prepare v0.4.2
 
-### 🚀 Features
+## 0.4.1 - 2026-10-08
 
-- Jetbrains_islands_dark for helix ... and other stuff
+### Bug Fixes
 
-### ⚙️ Miscellaneous Tasks
+#### Fish
 
-- *(release)* Release v0.3.0
-## [0.2.0] - 2025-12-06
+- Remove unused functions
+- Remove unused functions
+- Add abbreviations for git and astral tools
 
-### 🚀 Features
+### Miscellaneous Tasks
 
-- *(fish)* Fish functions with `gum` for git add/revert and git commit (conventional)
+#### Release
 
-### 📚 Documentation
+- Prepare v0.4.1
+
+## 0.4.0 - 2026-10-08
+
+### Bug Fixes
+
+#### Fish
+
+- Add changes related to update to 4.3
+
+### Features
+
+#### Helix
+
+- Cleanup language setup for python; Add more useful binds
+
+### Miscellaneous Tasks
+
+#### Release
+
+- Prepare v0.4.0
+
+### Refactor
+
+#### Release
+
+- Make release-script more stable
+
+### Styling
+
+#### Helix
+
+- Improve theme jetbrains_islands_dark
+
+## 0.3.1 - 2026-10-08
+
+### Miscellaneous Tasks
+
+#### Release
+
+- Prepare v0.3.0
+- Prepare v0.3.1
+
+## 0.3.0 - 2026-02-19
+
+### Features
+
+### Miscellaneous Tasks
+
+#### Release
+
+- Release v0.3.0
+
+## 0.2.0 - 2025-12-06
+
+### Documentation
+
+#### Unscoped
 
 - Update changelog for v0.2.0
 
-### ⚙️ Miscellaneous Tasks
+### Features
 
-- Release v0.2.0
-## [0.1.5] - 2025-12-06
+#### Fish
 
-### 🐛 Bug Fixes
+- Fish functions with `gum` for git add/revert and git commit (conventional)
 
-- Update python version
-- Remove z.fish & add/remove alacritty themes
+### Miscellaneous Tasks
 
-### ⚙️ Miscellaneous Tasks
+## 0.1.5 - 2025-12-06
 
-- *(fish)* Clean up unused vars
-- *(release)* Release v0.1.5
-## [0.1.4] - 2025-10-20
+### Bug Fixes
 
-### 🐛 Bug Fixes
+### Miscellaneous Tasks
 
-- Release script with support for:
+#### Fish
 
-### 📚 Documentation
+- Clean up unused vars
+
+#### Release
+
+- Release v0.1.5
+
+## 0.1.4 - 2025-10-20
+
+### Bug Fixes
+
+### Documentation
+
+#### Unscoped
 
 - Update changelog for v0.1.4
 
-### ⚙️ Miscellaneous Tasks
+### Miscellaneous Tasks
 
-- Release v0.1.4
-## [0.1.3] - 2025-10-20
+## 0.1.3 - 2025-10-20
 
-### 🐛 Bug Fixes
+### Bug Fixes
 
-- Refactor release.py to fix lint errors and change order so changelog commit is done before push
-- Fix logic for release.py using --unreleased flag from git-cliff and add ability to preview changes to changelog
+### Documentation
 
-### 📚 Documentation
+#### Unscoped
 
 - Update changelog for v0.1.2
 - Pointless line break
 - Update changelog for v0.1.3
 
-### ⚙️ Miscellaneous Tasks
+### Miscellaneous Tasks
 
-- Release v0.1.3
-## [0.1.2] - 2025-10-20
+## 0.1.2 - 2025-10-20
 
-### 📚 Documentation
+### Documentation
+
+#### Unscoped
 
 - Update changelog for v0.1.1
 - Update readme with info about release-script
 
-### ⚙️ Miscellaneous Tasks
+### Miscellaneous Tasks
 
-- Release v0.1.2
-## [0.1.1] - 2025-10-20
+## 0.1.1 - 2025-10-20
 
-### 🐛 Bug Fixes
+### Bug Fixes
 
-- Gitignore
+### Documentation
 
-### 💼 Other
-
-- Stuff :P
-
-### 🚜 Refactor
-
-- *(release)* Handles v prefix consistently
-
-### 📚 Documentation
+#### Unscoped
 
 - Update changelog for v
 - Update changelog for v
 
-### ⚙️ Miscellaneous Tasks
+### Miscellaneous Tasks
 
-- Release v0.1.1
-## [0.1.0] - 2025-10-17
+### Refactor
 
-### 🚀 Features
+#### Release
 
-- Add more theming in tmux conf
-- Themes for alacritty
-- New fish functions and abbreviations
-- Uv init
-- Release script in python
-- Configuration for git cliff
+- Handles v prefix consistently
 
-### 🐛 Bug Fixes
+### Misc
 
-- Some various experimentation to jetbrains_dark_mod
+## 0.1.0 - 2025-10-17
 
-### 📚 Documentation
+### Bug Fixes
+
+### Documentation
+
+#### Unscoped
 
 - Update changelog for v
 - Update changelog for v
 
-### ⚙️ Miscellaneous Tasks
+### Features
 
-- Release v
+### Miscellaneous Tasks
+
+<!-- generated by git-cliff -->
