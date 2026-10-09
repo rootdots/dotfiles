@@ -9,6 +9,8 @@ abbr --add gf 'git fetch'
 abbr --add gfp 'git fetch && git pull'
 abbr --add gp 'git pull'
 abbr --add gpp 'git push'
+abbr --add gr 'git restore'
+abbr --add grs 'git restore --staged'
 
 # astral - uv, ruff, ty
 abbr --add rcf 'uv run ruff check --fix'
