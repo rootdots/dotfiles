@@ -16,3 +16,6 @@ abbr --add rc 'uv run ruff check'
 abbr --add rf 'uv run ruff format'
 abbr --add tc 'ty check'
 abbr --add ur 'uv run'
+
+# help
+abbr --add as 'abbr --show'
