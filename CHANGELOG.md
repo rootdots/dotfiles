@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.4.7 - 2026-10-11
+
+### Bug Fixes
+
+#### Helix
+
+- Add themes alabaster dark and light
+
 ## 0.4.6 - 2026-10-09
 
 ### Styling
