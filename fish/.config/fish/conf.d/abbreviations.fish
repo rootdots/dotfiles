@@ -3,8 +3,9 @@ abbr --add ll 'ls -lha'
 
 # git
 abbr --add ga 'git add'
+abbr --add gcm --set-cursor 'git commit -m "%"'
 abbr --add gcp --set-cursor 'git commit -m "%" && git push'
-abbr --add gc --set-cursor 'git commit -m "%"'
+abbr --add gcv 'git commit -v'
 abbr --add gf 'git fetch'
 abbr --add gfp 'git fetch && git pull'
 abbr --add gp 'git pull'
