@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.4.8 - 2026-10-15
+
+### Bug Fixes
+
+#### Helix
+
+- Tweak appearance of wolf-alabaster themes
+
+### Styling
+
+#### Helix
+
+- Set wolf-alabaster-dark as theme
+
 ## 0.4.7 - 2026-10-11
 
 ### Bug Fixes
