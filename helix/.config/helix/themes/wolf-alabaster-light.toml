@@ -62,6 +62,10 @@ diagnostic = { underline = { style = "curl" } }
 "ui.statusline" = { fg = "fg", bg = "panel" }
 "ui.statusline.inactive" = { fg = "punctuation", bg = "panel" }
 
+# NOTE: Own addition 
+"ui.statusline.insert" = { fg = "bg", bg = "active" }
+"ui.statusline.select" = { fg = "fg", bg = "selection-primary" }
+
 # Bufferline - make active buffer clearly visible (like onelight-fixed-bufferline)
 "ui.bufferline.active" = { fg = "fg", bg = "bg", modifiers = ["bold"] }
 "ui.bufferline.background" = { bg = "bg" }
