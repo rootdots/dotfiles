@@ -1,5 +1,4 @@
-# theme = "jetbrains_dark_mod"
-theme = "jetbrains_islands_dark"
+theme = "wolf-alabaster-dark"
 
 [editor]
 true-color = true
