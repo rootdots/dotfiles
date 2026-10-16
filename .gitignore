@@ -10,3 +10,6 @@ wheels/
 .venv
 
 uv.lock
+
+# Env vars
+secrets.fish
