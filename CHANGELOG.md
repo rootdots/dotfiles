@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.5.0 - 2026-11-09
+
+### Bug Fixes
+
+#### Git
+
+- Extend ignore
+
+#### Helix
+
+- Sort binds in config
+
+### Features
+
+#### Gitu
+
+- Add abbr and completions for gitu
+
 ## 0.4.9 - 2026-10-15
 
 ### Bug Fixes
