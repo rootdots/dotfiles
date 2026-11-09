@@ -4,19 +4,8 @@ end
 
 set -Ux BAT_THEME ansi
 set -gx EDITOR hx
+set -g fzf_fd_opts --hidden --no-ignore --exclude .git
 
 starship init fish | source
 
-# Homebrew
-# --------
-# Configuring Completions in fish
-# No configuration is needed if you’re using Homebrew’s fish. Friendly!
-# If your fish is from somewhere else, add the following to your ~/.config/fish/config.fish:
-if test -d (brew --prefix)"/share/fish/completions"
-    set -p fish_complete_path (brew --prefix)/share/fish/completions
-end
-
-if test -d (brew --prefix)"/share/fish/vendor_completions.d"
-    set -p fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
-end
 zoxide init fish | source

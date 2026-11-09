@@ -9,6 +9,10 @@ rulers = [88]
 bufferline = "multiple"
 end-of-line-diagnostics = "disable"
 inline-diagnostics.cursor-line = "hint"
+mouse = false
+
+[editor.file-picker]
+hidden = false
 
 [editor.soft-wrap]
 enable = true
