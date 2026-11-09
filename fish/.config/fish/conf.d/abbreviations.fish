@@ -1,6 +1,9 @@
 # general
 abbr --add ll 'ls -lha'
 
+# gitu
+abbr --add g gitu
+
 # git
 abbr --add ga 'git add'
 abbr --add gcm --set-cursor 'git commit -m "%"'
