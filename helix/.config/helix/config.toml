@@ -64,5 +64,6 @@ S-up = "copy_selection_on_prev_line"
 X = "extend_line_above"
 
 [keys.insert]
+"esc" = ["normal_mode", ":w"] # Write file when leaving insert-mode
 S-down = "copy_selection_on_next_line"
 S-up = "copy_selection_on_prev_line"
